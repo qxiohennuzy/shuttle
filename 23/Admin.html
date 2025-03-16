@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TMO Shuttle Services</title>
+    <style>
+        /* General Reset and Body Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e9ecef, #ced4da); /* Subtle gradient background */
+            color: #333;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(52, 58, 64, 0.85); /* Dark background with transparency */
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
+            position: fixed; /* Fixed to the top */
+            top: 0;
+            left: 0;
+            z-index: 100; /* Ensure it's on top */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
+        }
+
+
+        /* Main Styles */
+        main {
+            padding-top: 8rem; /* Space for the header */
+            width: 100%;
+            max-width: 400px;  /* Limit the width of the login form */
+        }
+
+        /* Login Section Styles */
+        #login {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
+            border-radius: 0.5rem;
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        #login h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #343a40; /* Darker heading color */
+        }
+
+        /* Form Styles */
+        #login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #login-form label {
+            text-align: left;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;  /* Lighter label color */
+        }
+
+        #login-form input[type="text"],
+        #login-form input[type="password"] {
+            padding: 0.85rem 1.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #adb5bd;  /* Slightly darker border */
+            border-radius: 0.35rem;
+            font-size: 1.05rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);  /* Subtle inner shadow */
+        }
+
+        #login-form input[type="text"]:focus,
+        #login-form input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus ring */
+        }
+
+        /* Button Styles */
+        #login-form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.85rem 1.75rem;
+            border: none;
+            border-radius: 0.35rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Button shadow */
+        }
+
+        #login-form button[type="submit"]:hover {
+            background-color: #0056b3;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Paragraph Style */
+        #login p {
+            margin-top: 1.75rem;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        #login a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #login a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TMO Shuttle Services</h1>
+    </header>
+
+    <main>
+        <section id="login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+        </section>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>
