@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TMO Shuttle Services</title>
+    <link rel="stylesheet" href="Admin.css">
+</head>
+<body>
+    <header>
+        <h1>TMO Shuttle Services</h1>
+        <nav>
+            <ul>
+                <li><a href="Admin.html">Admin</a></li>
+                <li><a href="register.html">Register</a></li>
+				<li><a href="Admin.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="login">
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 TMO Shuttle Services</p>
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa; /* Light background */
+        }
+        h1 {
+            text-align: center; /* Center the header */
+            color: #333; /* Darker color for text */
+        }
+        #dashboard {
+            border: 1px solid #ccc; /* Border for dashboard */
+            padding: 20px; /* Inner padding */
+            margin-top: 20px;
+            background: white; /* White background for the dashboard */
+            border-radius: 5px; /* Rounded corners */
+            display: none; /* Initially hidden */
+        }
+        table {
+            width: 100%; /* Full width */
+            border-collapse: collapse; /* Merge borders */
+            margin-bottom: 20px; /* Space below table */
+        }
+        th, td {
+            text-align: left; /* Left-align text */
+            padding: 10px; /* Inner padding */
+            border-bottom: 1px solid #ccc; /* Bottom border */
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for header */
+        }
+        .popup {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: white;
+            z-index: 1000; /* Bring popup to front */
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .overlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+            z-index: 999; /* Behind the popup */
+        }
+        #searchForm {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between elements */
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-right: 20px; /* Space on the right */
+            flex: 1; /* Allow input to grow */
+        }
+        .form-group input {
+            padding: 10px; /* Inner padding */
+            margin-bottom: 10px;
+            width: 100%; /* Full width */
+            border: 1px solid #ccc; /* Border for input */
+            border-radius: 4px; /* Rounded corners */
+        }
+        .button {
+            margin: 10px 0; /* Margin for buttons */
+            padding: 10px 20px; /* Inner padding for buttons */
+            cursor: pointer; /* Pointer on hover */
+            background-color: #007BFF; /* Bootstrap primary color */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #searchForm {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+            .form-group {
+                margin-right: 0; /* Reset margin */
+                margin-bottom: 10px; /* Add bottom margin */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reports Dashboard</h1>
+    <form id="searchForm">
+        <div class="form-group">
+            <label for="searchInput">Search:</label>
+            <input type="text" id="searchInput" placeholder="Type name or ID">
+        </div>
+        <div class="form-group">
+            <button class="button" type="button" onclick="search()">Search</button>
+        </div>
+    </form>
+
+    <div>
+        <button class="button" onclick="showDashboard('Employee')">Show Employee Data</button>
+        <button class="button" onclick="showDashboard('Bus')">Show Bus Data</button>
+        <button class="button" onclick="showDashboard('Booking List')">Show Booking List</button>
+    </div>
+
+    <div id="dashboard">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile No</th>
+                    <th>License Expiration</th>
+                    <th>Address</th>
+                    <th>Assigned Bus</th>
+                </tr>
+            </thead>
+            <tbody id="dashboardBody"></tbody>
+        </table>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup"></div>
+
+    <script>
+        function showDashboard(section) {
+            const dashboardBody = document.getElementById('dashboardBody');
+            const dashboard = document.getElementById('dashboard');
+            dashboard.style.display = 'block';
+            dashboardBody.innerHTML = ''; // Clear previous content
+
+            if (section === 'Employee') {
+                const employees = JSON.parse(localStorage.getItem('employees')) || [];
+                if (employees.length === 0) {
+                    dashboardBody.innerHTML = '<tr><td colspan="7">No employee data available.</td></tr>';
+                } else {
+                    employees.forEach(emp => {
+                        dashboardBody.innerHTML += `
+                            <tr>
+                                <td>${emp.id}</td>
+                                <td>${emp.firstName}</td>
+                                <td>${emp.lastName}</td>
+                                <td>${emp.mobile}</td>
+                                <td>${emp.licenseExpiration}</td>
+                                <td>${emp.address}</td>
+                                <td>${emp.assignedBus}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            } else if (section === 'Bus') {
+                dashboardBody.innerHTML = '<tr><td colspan="7">Bus data will go here. (Make sure to implement this.)</td></tr>';
+            } else if (section === 'Booking List') {
+                dashboardBody.innerHTML = '<tr><td colspan="7">Booking list data will go here. (Make sure to implement this.)</td></tr>';
+            }
+        }
+
+        function search() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            let resultHTML = '';
+
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            const foundEmployees = employees.filter(emp => 
+                emp.firstName.toLowerCase().includes(searchTerm) || 
+                emp.lastName.toLowerCase().includes(searchTerm) || 
+                String(emp.id).includes(searchTerm)
+            );
+
+            if (foundEmployees.length) {
+                resultHTML += '<table><thead><tr><th>ID No</th><th>First Name</th><th>Last Name</th><th>Mobile No</th><th>License Expiration</th><th>Address</th><th>Assigned Bus</th></tr></thead><tbody>';
+                foundEmployees.forEach(emp => {
+                    resultHTML += `
+                        <tr>
+                            <td>${emp.id}</td>
+                            <td>${emp.firstName}</td>
+                            <td>${emp.lastName}</td>
+                            <td>${emp.mobile}</td>
+                            <td>${emp.licenseExpiration}</td>
+                            <td>${emp.address}</td>
+                            <td>${emp.assignedBus}</td>
+                        </tr>
+                    `;
+                });
+                resultHTML += '</tbody></table>';
+            } else {
+                resultHTML = '<p>No results found.</p>';
+            }
+
+            popup.innerHTML = resultHTML;
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

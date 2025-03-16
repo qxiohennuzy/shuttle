@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking System</title>
+    <link rel="stylesheet" href="new1.css">
+</head>
+<body>
+    <header>
+        <h1>TMO Shuttle Services</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#book">Book Now</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="book">
+            <h2>Book Your Bus</h2>
+            <form id="booking-form">
+                <label for="from">From:</label>
+                <input type="text" id="from" name="from" required>
+                
+                <label for="to">To:</label>
+                <input type="text" id="to" name="to" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time:</label>
+                <select id="time" name="time" required>
+                    <option value="">Select time</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                </select>
+
+                <label for="passenger">Number of Passengers:</label>
+                <input type="number" id="passenger" name="passenger" required min="1" max="50">
+
+                <button type="submit">Book Now</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 TMO Shuttle Services</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

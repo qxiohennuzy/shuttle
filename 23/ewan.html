@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Reservation System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h2>Bus Reservation System</h2>
+        <form id="reservationForm">
+            <fieldset>
+                <legend>Passenger Information</legend>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+                
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" required>
+                
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Travel Details</legend>
+                <label for="departure">Departure Location:</label>
+                <input type="text" id="departure" name="departure" required>
+                
+                <label for="destination">Destination Location:</label>
+                <input type="text" id="destination" name="destination" required>
+                
+                <label for="departureDate">Departure Date:</label>
+                <input type="date" id="departureDate" name="departureDate" required>
+                
+                <label for="departureTime">Departure Time:</label>
+                <input type="time" id="departureTime" name="departureTime" required>
+                
+                <label for="returnDate">Return Date (if applicable):</label>
+                <input type="date" id="returnDate" name="returnDate">
+                
+                <label for="numberOfPassengers">Number of Passengers:</label>
+                <input type="number" id="numberOfPassengers" name="numberOfPassengers" min="1" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Payment Information</legend>
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="creditCard">Credit Card</option>
+                    <option value="debitCard">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+                
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}">
+                
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="month" id="expiryDate" name="expiryDate" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required pattern="\d{3}">
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Requests</legend>
+                <label for="specialRequests">Please specify any special requests:</label>
+                <textarea id="specialRequests" name="specialRequests" rows="4" cols="50"></textarea>
+            </fieldset>
+
+            <button type="submit">Confirm Reservation</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for handling form submission could be added here
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert("Reservation confirmed! Thank you.");
+            // Here you would typically send the form data to the server
+            // using fetch or XMLHttpRequest
+        });
+    </script>
+</body>
+</html>

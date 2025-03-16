@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Bus Details - TMO Shuttle Services Integrated Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .back-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .update-container {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Edit Bus Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Plate No</th>
+                    <th>My File No</th>
+                    <th>Motor No</th>
+                    <th>Make</th>
+                    <th>Chasis No</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="busDetailsTable">
+                <!-- Example Row (You would dynamically populate this from your database or data source) -->
+                <tr>
+                    <td>1</td>
+                    <td>ABC123</td>
+                    <td>12345</td>
+                    <td>MN12345</td>
+                    <td>Toyota</td>
+                    <td>CH123456789</td>
+                    <td>In service</td>
+                    <td><button class="edit-button" onclick="editBus(1)">Edit</button></td>
+                </tr>
+                <!-- Add more rows as necessary -->
+            </tbody>
+        </table>
+
+        <div class="update-container">
+            <h3>Update Bus Details Information</h3>
+            <form id="updateBusForm">
+                <label for="updateNo">No</label>
+                <input type="text" id="updateNo" name="no" required>
+
+                <label for="updatePlateNo">Plate No</label>
+                <input type="text" id="updatePlateNo" name="plateNo" required>
+
+                <label for="updateMyFileNo">My File No</label>
+                <input type="text" id="updateMyFileNo" name="myFileNo" required>
+
+                <label for="updateMotorNo">Motor No</label>
+                <input type="text" id="updateMotorNo" name="motorNo" required>
+
+                <label for="updateMake">Make</label>
+                <input type="text" id="updateMake" name="make" required>
+
+                <label for="updateChasisNo">Chasis No</label>
+                <input type="text" id="updateChasisNo" name="chasisNo" required>
+
+                <label for="updateRemarks">Remarks</label>
+                <input type="text" id="updateRemarks" name="remarks">
+
+                <input type="submit" value="Update Bus">
+                <button type="button" class="back-button" onclick="goBack()">Back</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function editBus(busIndex) {
+            // For demonstration, we'll just fill the update form with static values
+            // In a real scenario, you would fetch this data from your data source
+            document.getElementById('updateNo').value = '1';
+            document.getElementById('updatePlateNo').value = 'ABC123';
+            document.getElementById('updateMyFileNo').value = '12345';
+            document.getElementById('updateMotorNo').value = 'MN12345';
+            document.getElementById('updateMake').value = 'Toyota';
+            document.getElementById('updateChasisNo').value = 'CH123456789';
+            document.getElementById('updateRemarks').value = 'In service';
+        }
+
+        document.getElementById('updateBusForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission for demonstration purposes
+            alert('Bus details updated successfully!');
+            // Add logic here to send the updated data to your server/database
+        });
+
+        function goBack() {
+            window.history.back(); // Go back to the previous page
+        }
+    </script>
+
+</body>
+
+</html>
